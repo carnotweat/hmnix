@@ -1,7 +1,7 @@
 { lib, config, pkgs, ... }:
-let cfg = config.lun.unifi; in
+let cfg = config.xameer.unifi; in
 {
-  options.lun.unifi.enable = lib.mkEnableOption "Enable unifi controller";
+  options.xameer.unifi.enable = lib.mkEnableOption "Enable unifi controller";
 
   config = {
     services.unifi = lib.mkIf cfg.enable {

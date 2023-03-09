@@ -12,7 +12,7 @@
       oci-containers.backend = "podman";
     };
 
-    lun.persistence.dirs = [
+    xameer.persistence.dirs = [
       "/var/lib/docker"
       "/var/lib/containers"
       "/var/lib/libvirt"

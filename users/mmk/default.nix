@@ -10,8 +10,8 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "mmk";
-  home.homeDirectory = "/home/mmk";
+  home.username = "pine";
+  home.homeDirectory = "/home/pine";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

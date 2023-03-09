@@ -24,7 +24,7 @@ in
       authFile = "/etc/pam-u2f/pam-u2f.cfg";
     };
 
-    lun.persistence.files = [ "/etc/pam-u2f/pam-u2f.cfg" ];
+    xameer.persistence.files = [ "/etc/pam-u2f/pam-u2f.cfg" ];
   };
 }
 

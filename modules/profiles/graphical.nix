@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
-  options.lun.profiles.graphical = (lib.mkEnableOption "Enable graphical profile") // { default = true; };
-  config = lib.mkIf config.lun.profiles.graphical {
+  options.xameer.profiles.graphical = (lib.mkEnableOption "Enable graphical profile") // { default = true; };
+  config = lib.mkIf config.xameer.profiles.graphical {
     # DESKTOP ENV
     # Enable the X11 windowing system.
     services.xserver.enable = true;
@@ -22,7 +22,7 @@
     services.earlyoom.enable = true;
 
     # PRINT
-    lun.print.enable = true;
+    xameer.print.enable = true;
 
     # XDG
     xdg.portal = {
@@ -54,7 +54,7 @@
     hardware.bluetooth.enable = true;
 
     # BLUETOOTH
-    lun.persistence.dirs = [ "/var/lib/bluetooth" ];
+    xameer.persistence.dirs = [ "/var/lib/bluetooth" ];
     services.blueman.enable = true;
     programs.dconf.enable = true;
 

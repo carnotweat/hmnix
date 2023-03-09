@@ -44,12 +44,12 @@ in
         extraGroups = adminGroups;
       };
     })
-    (lib.mkIf (builtins.elem "pine" cfg.enabled-users) {
+    (lib.mkIf (builtins.elem "mmk" cfg.enabled-users) {
       home-manager.users = {
-        pine = ./pine;
+        mmk = ./mmk;
       };
 
-      users.users.pine = {
+      users.users.mmk = {
         isNormalUser = true;
         shell = pkgs.fish;
         # Change after install

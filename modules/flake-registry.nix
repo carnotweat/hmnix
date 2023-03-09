@@ -17,7 +17,7 @@ in
     nix.registry.nixpkgs.flake = flakeArgs.nixpkgs;
     nix.registry.nixpkgs-stable.flake = flakeArgs.nixpkgs-stable;
 
-    #nix.registry.nixos-config.flake = lun;
+    #nix.registry.nixos-config.flake = xameer;
     #pkgs = pkgs provided to this system
     nix.registry.pkgs.flake =
       mkFlake pkgs { config = flakeArgs.self; }

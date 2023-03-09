@@ -37,7 +37,7 @@
     '';
 
     # global fish config
-    ".config/fish/conf.d/lun.fish".text = ''
+    ".config/fish/conf.d/xameer.fish".text = ''
       set -gx EDITOR vim
       history --save
       history --merge

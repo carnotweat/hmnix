@@ -49,7 +49,7 @@ let
     in
     builtins.listToAttrs (map (x: lib.nameValuePair x (pkgs.resholve.writeScriptBin x resholvCfg (builtins.readFile "${path}/${x}.sh"))) scripts);
 
-  lun-scripts-path = pkgs.symlinkJoin { name = "lun-scripts"; paths = lib.attrValues self.lun-scripts; };
+  xameer-scripts-path = pkgs.symlinkJoin { name = "xameer-scripts"; paths = lib.attrValues self.xameer-scripts; };
   # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/19101.patch
   mesaOverride =
     mesaPkg: (mesaPkg.overrideAttrs (old: {
@@ -99,22 +99,22 @@ let
     version = "23.0.0-dev";
     src = pkgs.fetchFromGitLab {
       domain = "gitlab.freedesktop.org";
-      owner = "lun";
+      owner = "xameer";
       repo = "mesa";
       rev = "7641e3524319dd9272be822b6e70c801496d9d92";
-      sha256 = "sha256-NLuNND5dJnqVocxk7zZrCJs+WxktKeUbZQVrf/nZXaQ=";
+      sha256 = "sha256-NXameerND5dJnqVocxk7zZrCJs+WxktKeUbZQVrf/nZXaQ=";
     };
     mesonFlags = lib.lists.remove "-Dxvmc-libs-path=${placeholder "drivers"}/lib" old.mesonFlags;
   });
   self = {
-    lun-scripts = wrapScripts ./lun-scripts;
+    xameer-scripts = wrapScripts ./xameer-scripts;
     xdg-open-with-portal = pkgs.callPackage ./xdg-open-with-portal { };
     kwinft = pkgs.lib.recurseIntoAttrs (pkgs.callPackage ./kwinft { });
     spawn = pkgs.callPackage ./spawn { };
     swaysome = pkgs.callPackage ./swaysome { };
     sworkstyle = pkgs.callPackage ./sworkstyle { };
-    lun = pkgs.writeShellScriptBin "lun" ''
-      exec "${lun-scripts-path}/bin/$1" "''${@:2}"
+    xameer = pkgs.writeShellScriptBin "xameer" ''
+      exec "${xameer-scripts-path}/bin/$1" "''${@:2}"
     '';
     svpflow = pkgs.callPackage ./svpflow { };
     # inherit (flakeArgs.nixpkgs-mesa-pr.legacyPackages.${pkgs.system}) mesa;

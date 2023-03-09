@@ -16,7 +16,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.lun.wg-netns;
+  cfg = config.xameer.wg-netns;
   ip = "${pkgs.iproute2}/bin/ip";
   inherit (pkgs) util-linux;
 
@@ -24,7 +24,7 @@ let
   nsswitchconf = pkgs.writeText "wg-nsswitch.conf" "hosts: files dns";
 in
 {
-  options.lun.wg-netns = with lib; {
+  options.xameer.wg-netns = with lib; {
     enable = mkEnableOption "Wireguard netns container";
 
     privateKey = mkOption {

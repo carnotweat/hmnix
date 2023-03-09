@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }:
 let
-  cfg = config.lun.gpu-select;
+  cfg = config.xameer.gpu-select;
   env = {
     # makes mesa's device select layer expose only the default device
     # this will be the selected card usually, or if DRI_PRIME is set the first GPU in the system that isn't that and isn't CPU
@@ -16,7 +16,7 @@ let
   });
 in
 {
-  options.lun.gpu-select = {
+  options.xameer.gpu-select = {
     enable = lib.mkEnableOption "enable gpu selection";
     card = lib.mkOption {
       type = with lib.types; nullOr str;
@@ -32,7 +32,7 @@ in
     }
     (lib.mkIf (cfg.card != null) {
       # Adds support for KMS_DEVICE env var to ensure only one device is accessed by X server
-      services.xserver.displayManager.xserverBin = lib.mkForce "${pkgs.lun.xorgserver.out}/bin/X";
+      services.xserver.displayManager.xserverBin = lib.mkForce "${pkgs.xameer.xorgserver.out}/bin/X";
 
       services.udev.extraRules = ''
         # ensure all cards don't get seat and master-of-seat tags

@@ -2,6 +2,6 @@ _:
 {
   config = {
     programs.adb.enable = true;
-    users.users.lun.extraGroups = [ "adbusers" ];
+    users.users.xameer.extraGroups = [ "adbusers" ];
   };
 }

@@ -1,4 +1,4 @@
-# Lun (and family) nixos-configs
+# Xameer (and family) nixos-configs
 
 Our initial attempts at using NixOS.
 

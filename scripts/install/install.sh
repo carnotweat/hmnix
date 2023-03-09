@@ -8,7 +8,7 @@ HOSTNAME="$NAME-nixos"
 
 BOOT_PARTITION=/dev/disk/by-partlabel/"$NAME"_esp
 PERSIST_PARTITION=/dev/disk/by-partlabel/"$NAME"_persist
-FLAKE=github:LunNova/nixos-configs/dev#$HOSTNAME
+FLAKE=github:XameerNova/nixos-configs/dev#$HOSTNAME
 
 mount -t tmpfs none /mnt
 
@@ -19,7 +19,7 @@ mount "$PERSIST_PARTITION" -o defaults,ssd,nosuid,nodev,compress=zstd,noatime,su
 
 mkdir -p /mnt/{boot,persist,home,nix,var/log} /mnt/persist/{home,nix,var/log,etc/ssh,root}
 
-for dir in $(nix eval --raw "$FLAKE#nixosConfigurations.$HOSTNAME.config.lun.persistence.dirs_for_shell_script"); do
+for dir in $(nix eval --raw "$FLAKE#nixosConfigurations.$HOSTNAME.config.xameer.persistence.dirs_for_shell_script"); do
 	mkdir -p "/mnt$dir" "/mnt/persist$dir"
 	mount -o bind "/mnt/persist$dir" "/mnt$dir" || true
 done

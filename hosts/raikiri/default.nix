@@ -8,7 +8,7 @@ in
   ];
 
   config = {
-    networking.hostName = "mmk-${name}-nixos";
+    networking.hostName = "pine-${name}-nixos";
     sconfig.machineId = "cb26ad93b8a7b58bb481b6fc3a90f12b";
     system.stateVersion = "22.05";
 
@@ -20,7 +20,7 @@ in
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_xanmod;
 
     services.xserver.videoDrivers = [ "amdgpu" ];
-    lun.ml = {
+    xameer.ml = {
       enable = true;
       gpus = [ "amd" ];
     };
@@ -28,9 +28,9 @@ in
     hardware.cpu.amd.updateMicrocode = true;
 
     users.mutableUsers = false;
-    my.home-manager.enabled-users = [ "lun" "mmk" ];
+    my.home-manager.enabled-users = [ "xameer" "pine" ];
 
-    lun.persistence.enable = true;
+    xameer.persistence.enable = true;
     fileSystems = {
       "/" = {
         device = "tmpfs";

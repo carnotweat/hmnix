@@ -1,11 +1,11 @@
 { config, pkgs, lib, ... }:
 let
   nvidia_x11 = config.hardware.nvidia.package;
-  cfg = config.lun.nvidia-gpu-standalone;
+  cfg = config.xameer.nvidia-gpu-standalone;
   module = if cfg.open then nvidia_x11.open else nvidia_x11.bin;
 in
 {
-  options.lun.nvidia-gpu-standalone = {
+  options.xameer.nvidia-gpu-standalone = {
     enable = lib.mkEnableOption "nvidia kernel modules and acceleration support without touching X configs";
     open = lib.mkEnableOption "using open source driver";
     delayXWorkaround = lib.mkEnableOption "delay X startup to workaround server start failing when KMS is slow to init";

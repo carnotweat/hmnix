@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  cfg = config.lun.amd-pstate;
+  cfg = config.xameer.amd-pstate;
 in
 {
-  options.lun.amd-pstate = {
+  options.xameer.amd-pstate = {
     enable = lib.mkEnableOption "Enable AMD memory encryption";
     sharedMem = lib.mkEnableOption "use shared_mem";
   };

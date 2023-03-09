@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.services.xserver;
-  lcfg = config.lun.amd-nvidia-laptop;
+  lcfg = config.xameer.amd-nvidia-laptop;
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
@@ -20,7 +20,7 @@ let
 in
 {
   # see https://download.nvidia.com/XFree86/Linux-x86_64/510.47.03/README/randr14.html
-  options.lun.amd-nvidia-laptop = {
+  options.xameer.amd-nvidia-laptop = {
     enable = lib.mkEnableOption "Enable amd-nvidia-laptop";
     sync = with lib; mkOption {
       type = with types; bool;

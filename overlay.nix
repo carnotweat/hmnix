@@ -6,7 +6,7 @@ let
   enableKwinFt = false;
 in
 {
-  lun = localPackages;
+  xameer = localPackages;
   powercord-plugins = self.lib.filterPrefix "pcp-" flakeArgs;
   powercord-themes = self.lib.filterPrefix "pct-" flakeArgs;
   inherit (localPackages) kwinft;

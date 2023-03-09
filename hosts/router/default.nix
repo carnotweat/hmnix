@@ -86,7 +86,7 @@ in
       #   ];
       # };  
     };
-    lun.profiles = {
+    xameer.profiles = {
       server = true;
       gaming = false;
       graphical = false;
@@ -301,10 +301,10 @@ in
       };
       dataDir = "/var/lib/grafana";
     };
-    lun.persistence.dirs = [ "/var/lib/dnsmasq" "/var/lib/grafana" "/var/tmp" "/tmp" "/persist/thoth/ftmp" ];
+    xameer.persistence.dirs = [ "/var/lib/dnsmasq" "/var/lib/grafana" "/var/tmp" "/tmp" "/persist/thoth/ftmp" ];
 
     services.lldpd.enable = true;
-    lun.home-assistant.enable = true;
+    xameer.home-assistant.enable = true;
     services.plex = {
       enable = true;
       openFirewall = true;
@@ -364,7 +364,7 @@ in
         };
       };
 
-    lun.persistence.enable = true;
+    xameer.persistence.enable = true;
     fileSystems = {
       "/" = {
         device = "tmpfs";

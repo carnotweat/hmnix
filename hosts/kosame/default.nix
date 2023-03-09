@@ -45,13 +45,13 @@ in
       "${nixos-hardware-modules-path}/asus/battery.nix"
     ];
 
-  lun.amd-pstate.enable = true;
-  lun.power-saving.enable = true;
-  lun.power-saving.usb = true;
+  xameer.amd-pstate.enable = true;
+  xameer.power-saving.enable = true;
+  xameer.power-saving.usb = true;
 
   # This always crashes so is off but want to debug later
   # specialisation.nvidia-offload.configuration = {
-  #   lun.amd-nvidia-laptop = {
+  #   xameer.amd-nvidia-laptop = {
   #     sync = lib.mkForce false;
   #     layoutCommand = lib.mkForce null; #"${pkgs.xorg.xrandr}/bin/xrandr --output DP-1-0 --left-of eDP || true";
   #   };
@@ -74,7 +74,7 @@ in
   # };
 
   specialisation.low-power.configuration = {
-    lun.amd-nvidia-laptop.enable = lib.mkForce false;
+    xameer.amd-nvidia-laptop.enable = lib.mkForce false;
     boot.blacklistedKernelModules = [
       "i2c_nvidia_gpu"
       "radeon"
@@ -107,7 +107,7 @@ in
 
   hardware.asus.battery.chargeUpto = 66;
 
-  networking.hostName = "lun-kosame-nixos";
+  networking.hostName = "xameer-kosame-nixos";
   sconfig.machineId = "0715dc6a95b3419e8e2465240b7e598b";
   system.stateVersion = "21.05";
   boot.cleanTmpDir = true;
@@ -126,7 +126,7 @@ in
     glxinfo
   ];
 
-  lun.amd-nvidia-laptop = {
+  xameer.amd-nvidia-laptop = {
     enable = true;
     sync = true;
     layoutCommand = "${pkgs.xorg.xrandr}/bin/xrandr --output eDP-1-0 --left-of DP-0 || true";

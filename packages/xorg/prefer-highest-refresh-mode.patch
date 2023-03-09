@@ -68,7 +68,7 @@ index 1ac573867..1cb82be70 100644
          preferred = TRUE;
      if (quirks & (DDC_QUIRK_PREFER_LARGE_60 | DDC_QUIRK_PREFER_LARGE_75))
          preferred = FALSE;
-+    // lun patch: prefer highest refresh always
++    // xameer patch: prefer highest refresh always
 +    preferred = FALSE;
  
      rb = xf86MonitorSupportsReducedBlanking(DDC);
@@ -77,7 +77,7 @@ index 1ac573867..1cb82be70 100644
      if (quirks & DDC_QUIRK_PREFER_LARGE_75)
          xf86DDCSetPreferredRefresh(scrnIndex, Modes, 75);
  
-+    // lun patch: prefer highest refresh always
++    // xameer patch: prefer highest refresh always
 +    xf86DDCSetPreferredRefresh(scrnIndex, Modes, 1000);
 +
      Modes = xf86PruneDuplicateModes(Modes);

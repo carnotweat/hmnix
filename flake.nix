@@ -1,11 +1,11 @@
 {
-  description = "lun's system config";
+  description = "xameer's system config";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixpkgs-mesa.url = "github:NixOS/nixpkgs/staging-next";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/release-22.05";
-    nixpkgs-cura-testing.url = "github:LunNova/nixpkgs/bd7de0e7c17a16885fbe25ffb7c266fffb65dfb9";
+    nixpkgs-cura-testing.url = "github:XameerNova/nixpkgs/bd7de0e7c17a16885fbe25ffb7c266fffb65dfb9";
     nixpkgs-ancient = {
       url = "github:NixOS/nixpkgs/18.03";
       flake = false;
@@ -32,15 +32,15 @@
     nixpkgs-review-checks.inputs.flake-utils.follows = "flake-utils";
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
-    openxr-nix-flake.url = "github:LunNova/openxr-nix-flake";
+    openxr-nix-flake.url = "github:XameerNova/openxr-nix-flake";
     openxr-nix-flake.inputs.nixpkgs.follows = "nixpkgs";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
 
-    minimal-shell.url = "github:LunNova/nix-minimal-shell";
+    minimal-shell.url = "github:XameerNova/nix-minimal-shell";
 
     # Powercord. pcp- and pct- prefix have meaning, cause inclusion as powercord plugin/theme
     replugged-nix-flake = {
-      url = "github:LunNova/replugged-nix-flake";
+      url = "github:XameerNova/replugged-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # TODO: check for web access loading scripts and patch out
@@ -88,15 +88,15 @@
         in
         {
           router-nixos = linux64.makeHost ./hosts/router;
-          lun-kosame-nixos = linux64.makeHost ./hosts/kosame;
-          lun-hisame-nixos = linux64.makeHost ./hosts/hisame;
-          mmk-raikiri-nixos = linux64.makeHost ./hosts/raikiri;
+          xameer-kosame-nixos = linux64.makeHost ./hosts/kosame;
+          xameer-hisame-nixos = linux64.makeHost ./hosts/hisame;
+          pine-raikiri-nixos = linux64.makeHost ./hosts/raikiri;
         };
 
       deploy.nodes.router = {
         hostname = "10.5.5.1"; # "router-nixos";
         profiles.system = {
-          sshUser = "lun";
+          sshUser = "xameer";
           user = "root";
           path = flakeArgs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.router-nixos;
         };

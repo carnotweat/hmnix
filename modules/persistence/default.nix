@@ -1,8 +1,8 @@
 # Based off setup from github:buckley310/nixos-config although has diverged now
 { config, lib, ... }:
 let
-  cfg = config.lun.persistence;
-  inherit (config.lun.persistence) persistPath;
+  cfg = config.xameer.persistence;
+  inherit (config.xameer.persistence) persistPath;
   addCheckDesc = desc: elemType: check: lib.types.addCheck elemType check
     // { description = "${elemType.description} (with check: ${desc})"; };
   isNonEmpty = s: (builtins.match "[ \t\n]*" s) == null;
@@ -10,7 +10,7 @@ let
     (s: isNonEmpty s && (builtins.match "/.+/" s) == null);
 in
 {
-  options.lun.persistence = {
+  options.xameer.persistence = {
     enable = lib.mkEnableOption "Enable persistence module for tmpfs on root";
 
     persistPath = lib.mkOption {
@@ -29,7 +29,7 @@ in
     };
 
     # Intended for use with
-    # nix eval --raw .#nixosConfigurations.(hostname).config.lun.persistence.dirs_for_shell_script
+    # nix eval --raw .#nixosConfigurations.(hostname).config.xameer.persistence.dirs_for_shell_script
     # to iterate over dirs that need created in /persist
     dirs_for_shell_script = lib.mkOption {
       type = with lib.types; str;
@@ -38,12 +38,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    lun.persistence.dirs_for_shell_script = builtins.concatStringsSep "\n" cfg.dirs;
+    xameer.persistence.dirs_for_shell_script = builtins.concatStringsSep "\n" cfg.dirs;
 
     # Don't bother with the lecture or the need to keep state about who's been lectured
     security.sudo.extraConfig = "Defaults lecture=\"never\"";
 
-    lun.persistence.dirs = [
+    xameer.persistence.dirs = [
       "/nix"
       "/var/log"
       "/var/tmp"
@@ -51,7 +51,7 @@ in
       "/home"
     ];
 
-    lun.persistence.files = [
+    xameer.persistence.files = [
       "/etc/adjtime"
     ];
 

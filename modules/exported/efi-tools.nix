@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.lun.efi-tools;
+  cfg = config.xameer.efi-tools;
   inherit (config.boot.loader) efi;
   copyTool = source: dest_filename:
     ''
@@ -21,7 +21,7 @@ let
     '';
 in
 {
-  options.lun.efi-tools = {
+  options.xameer.efi-tools = {
     enable = lib.mkEnableOption "Enable copying tools to EFI System Partition tools directory";
     tools = lib.mkOption {
       default = { };
@@ -30,7 +30,7 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    lun.efi-tools.tools = {
+    xameer.efi-tools.tools = {
       memtest86 = lib.mkDefault pkgs.memtest86plus.efi;
       shell = lib.mkDefault pkgs.edk2-uefi-shell.efi;
     };

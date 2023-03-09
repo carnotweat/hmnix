@@ -12,7 +12,7 @@ in
   ];
 
   config = {
-    networking.hostName = "lun-${name}-nixos";
+    networking.hostName = "xameer-${name}-nixos";
     sconfig.machineId = "63d3399d2f2f65c96848f11d73082aef";
     system.stateVersion = "22.05";
 
@@ -133,25 +133,25 @@ in
       # }
     ];
     services.hardware.bolt.enable = true;
-    # lun.gpu-select.card = "card0";
+    # xameer.gpu-select.card = "card0";
     # specialisation.carddefault.configuration = {
-    #   lun.gpu-select.card = lib.mkForce null;
+    #   xameer.gpu-select.card = lib.mkForce null;
     # };
     # specialisation.card0.configuration = {
-    #   lun.gpu-select.card = lib.mkForce "card0";
+    #   xameer.gpu-select.card = lib.mkForce "card0";
     # };
     # specialisation.card1.configuration = {
-    #   lun.gpu-select.card = lib.mkForce "card1";
+    #   xameer.gpu-select.card = lib.mkForce "card1";
     # };
     # specialisation.card2.configuration = {
-    #   lun.gpu-select.card = lib.mkForce "card2";
+    #   xameer.gpu-select.card = lib.mkForce "card2";
     # };
-    # lun.amd-pstate.enable = true;
-    # lun.amd-pstate.sharedMem = true;
+    # xameer.amd-pstate.enable = true;
+    # xameer.amd-pstate.sharedMem = true;
     # powerManagement.cpuFreqGovernor = "schedutil";
-    lun.conservative-governor.enable = true;
-    lun.tablet.enable = true;
-    lun.profiles = {
+    xameer.conservative-governor.enable = true;
+    xameer.tablet.enable = true;
+    xameer.profiles = {
       gaming = true;
     };
 
@@ -205,28 +205,28 @@ in
     #   pkgs.linuxPackagesFor kernel;
 
 
-    lun.power-saving.enable = true;
-    lun.efi-tools.enable = true;
+    xameer.power-saving.enable = true;
+    xameer.efi-tools.enable = true;
 
     services.xserver.videoDrivers = [ "amdgpu" ];
-    # services.xserver.drivers = lib.mkIf (config.lun.gpu-select.card != null) (lib.mkForce [{
+    # services.xserver.drivers = lib.mkIf (config.xameer.gpu-select.card != null) (lib.mkForce [{
     #   name = "modesetting";
     #   display = true;
     #   deviceSection = ''
-    #     Option "kmsdev" "/dev/dri/${config.lun.gpu-select.card}"
+    #     Option "kmsdev" "/dev/dri/${config.xameer.gpu-select.card}"
     #   '';
     # }]);
-    lun.gpu-select.enable = true;
-    # lun.nvidia-gpu-standalone.enable = true; # enable nvidia gpu kernel modules and opengl/vulkan support only, no x stuff changes
-    lun.nvidia-gpu-standalone.delayXWorkaround = true; # enable nvidia gpu kernel modules and opengl/vulkan support only, no x stuff changes
+    xameer.gpu-select.enable = true;
+    # xameer.nvidia-gpu-standalone.enable = true; # enable nvidia gpu kernel modules and opengl/vulkan support only, no x stuff changes
+    xameer.nvidia-gpu-standalone.delayXWorkaround = true; # enable nvidia gpu kernel modules and opengl/vulkan support only, no x stuff changes
     hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
-    lun.ml = {
+    xameer.ml = {
       enable = false; # FIXME: rocm https://github.com/NixOS/nixpkgs/issues/203949
       gpus = [ "amd" ];
     };
     hardware.opengl = {
-      package = pkgs.lun.mesa.drivers;
-      package32 = pkgs.lun.mesa-i686.drivers;
+      package = pkgs.xameer.mesa.drivers;
+      package32 = pkgs.xameer.mesa-i686.drivers;
     };
 
     hardware.cpu.amd.updateMicrocode = true;
@@ -235,7 +235,7 @@ in
 
     # debugging: sudo ip -all netns exec wg show
     # if 0b received probably need to refresh info below
-    lun.wg-netns = {
+    xameer.wg-netns = {
       enable = true;
 
       privateKey = "/persist/mullvad/priv.key";
@@ -265,7 +265,7 @@ in
           rpc-port = 9091;
           rpc-authentication-required = true;
 
-          rpc-username = "lun";
+          rpc-username = "xameer";
           rpc-password = "nix-placeholder";
 
           # Proxied behind nginx.
@@ -284,8 +284,8 @@ in
     nix.settings.cores = 16;
     nix.settings.max-silent-time = 3600;
 
-    lun.persistence.enable = true;
-    lun.persistence.dirs = [
+    xameer.persistence.enable = true;
+    xameer.persistence.dirs = [
       "/home"
       "/var/log"
       "/nix"

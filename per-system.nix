@@ -57,7 +57,7 @@ let
               home-manager.extraSpecialArgs = {
                 inherit flakeArgs;
                 inherit (perSystemSelf) pkgs-stable;
-                lun-profiles = config.lun.profiles;
+                xameer-profiles = config.xameer.profiles;
               };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -86,7 +86,7 @@ let
               inherit flakeArgs;
               inherit (perSystemSelf) pkgs-stable;
               nixosConfig = null;
-              lun-profiles = {
+              xameer-profiles = {
                 graphical = true;
                 wine = false;
               };
@@ -101,24 +101,24 @@ let
           };
       in
       {
-        lun = makeUser "lun";
-        mmk = makeUser "mmk";
+        xameer = makeUser "xameer";
+        pine = makeUser "pine";
       };
     slowChecks = rec {
       all-packages = perSystemSelf.pkgs.symlinkJoin {
-        name = "lun packages.${system}";
+        name = "xameer packages.${system}";
         paths = lib.attrValues perSystemSelf.packages;
       };
       all-systems = perSystemSelf.pkgs.symlinkJoin {
-        name = "lun nixosConfigurations for system ${system}";
+        name = "xameer nixosConfigurations for system ${system}";
         paths = lib.filter (x: x.system == system) (map (cfg: flakeArgs.self.nixosConfigurations.${cfg}.config.system.build.toplevel) (builtins.attrNames flakeArgs.self.nixosConfigurations));
       };
       all-users = perSystemSelf.pkgs.symlinkJoin {
-        name = "lun homeConfigurations for system ${system}";
+        name = "xameer homeConfigurations for system ${system}";
         paths = map (x: x.activationPackage) (lib.attrValues perSystemSelf.homeConfigurations);
       };
       all = perSystemSelf.pkgs.symlinkJoin {
-        name = "lun all";
+        name = "xameer all";
         paths = [ all-packages all-systems all-users ];
       };
     };

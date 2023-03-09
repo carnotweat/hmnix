@@ -1,9 +1,9 @@
 { config, lib, ... }:
 let
-  cfg = config.lun.amd-mem-encrypt;
+  cfg = config.xameer.amd-mem-encrypt;
 in
 {
-  options.lun.amd-mem-encrypt = {
+  options.xameer.amd-mem-encrypt = {
     enable = lib.mkEnableOption "Enable AMD memory encryption";
   };
   config = lib.mkIf cfg.enable {

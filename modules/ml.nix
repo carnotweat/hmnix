@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 let
-  cfg = config.lun.ml;
+  cfg = config.xameer.ml;
   virtualisation = config.virtualisation.podman.enable or config.virtualisation.docker.enable;
   nvidia = builtins.elem "nvidia" cfg.gpus;
   amd = builtins.elem "amd" cfg.gpus;
 in
 {
-  options.lun.ml = {
+  options.xameer.ml = {
     enable = lib.mkEnableOption "Enable ml";
     gpus = with lib; mkOption {
       type = with types; listOf (enum [ "nvidia" "amd" "intel" ]);

@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 {
-  options.lun.profiles.common = (lib.mkEnableOption "Enable common profile") // { default = true; };
+  options.xameer.profiles.common = (lib.mkEnableOption "Enable common profile") // { default = true; };
 
-  config = lib.mkIf config.lun.profiles.common {
-    my.home-manager.enabled-users = [ "lun" ];
+  config = lib.mkIf config.xameer.profiles.common {
+    my.home-manager.enabled-users = [ "xameer" ];
 
     # LANGUAGE / I18N
     i18n = let locale = "en_US.UTF-8"; in
@@ -86,7 +86,7 @@
         KbdInteractiveAuthentication = false;
       };
     };
-    lun.persistence.dirs = [ "/etc/ssh" ];
+    xameer.persistence.dirs = [ "/etc/ssh" ];
 
     # BOOT
     boot = {
@@ -159,7 +159,7 @@
       traceroute
       dnsutils
       libfaketime
-      lun.lun
+      xameer.xameer
     ];
 
     # systemd

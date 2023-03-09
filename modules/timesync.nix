@@ -17,6 +17,6 @@ _:
     };
     services.timesyncd.enable = false;
     services.ntp.enable = false;
-    lun.persistence.dirs = [ "/var/lib/chrony" ];
+    xameer.persistence.dirs = [ "/var/lib/chrony" ];
   };
 }
